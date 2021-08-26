@@ -1,0 +1,126 @@
+<!--
+Archivo de settings general de Maven. Este archivo no deberia
+ser modificado. Para configuraciones especificas del entorno
+de trabajo modificar el archivo settings.xml del repositorio
+local (%USER_HOME%\.m2\settings.xml por default)
+ -->
+<settings>
+         <interactiveMode>true</interactiveMode>
+
+		 <proxies>
+			<proxy>
+			  <id>osde</id>
+			  <active>false</active>
+			  <protocol>http</protocol>
+			  <!--Completar el proxy si se desea tener acceso a internet-->
+			  <host>000.000.000.000</host>
+			  <port>3128</port>
+			  <!--Usuario del proxy-->
+			  <username>XXXXX</username>
+			  <!--Password del proxy-->
+			  <password>XXXXX</password>
+			  <!--Minimo de configuracion necesaria para las exclusiones
+					de proxy, de modo que lo aqui listado se pueda acceder sin el-->
+			  <nonProxyHosts>*.osde.*|repoversiones.*</nonProxyHosts>
+			</proxy>
+		  </proxies>
+		 
+        <servers>
+                <server>
+                        <id>local.artifactory</id>
+                </server>
+                <server>
+                        <id>central.artifactory</id>
+                </server>
+                <server>
+                        <id>servicios-snapshots</id>
+                </server>
+                <server>
+                        <id>servicios-releases</id>
+                </server>
+                <server>
+                        <id>componentes-snapshots</id>
+                </server>
+                <server>
+                        <id>componentes-releases</id>
+                </server>              
+                <server>
+                        <id>aplicaciones-snapshots</id>
+                </server>
+                <server>
+                        <id>aplicaciones-releases</id>
+                </server>              
+                <server>
+                        <id>plugins-snapshots</id>
+                </server>
+                <server>
+                        <id>plugins-releases</id>
+                </server>       
+				<server>
+					<id>nexus-release</id>
+					<username>deployment</username>
+					<password>deploy</password>
+                </server>        				
+        </servers>
+
+        <!-- Mirrors de los repositorios. Por defecto solo hay
+                 accesso a los repositorios locales de OSDE. Es
+                 posible bypasearlos pero se debe tener en cuenta
+                 que las dependencias que se bajen de repositorios
+                 externos a la organizacion pueden no estar
+                 disponibles para el resto de la gente.  
+         -->
+        <mirrors>
+                <mirror>
+                        <id>local.artifactory</id>
+                        <mirrorOf>*</mirrorOf>
+                        <url>http://repoversiones.osde.ar:8180/repository/osde-repositorios/</url>
+                        <name>Repositorios Osde</name>
+                </mirror>
+        </mirrors>
+
+        <profiles>
+                <profile>
+                        <id>OSDE-repos</id>
+                        <repositories>
+                        <repository>
+                                <id>componentes-releases</id>
+                                <name>componentes-releases</name>
+                                <url>https://repoversiones.osde.ar:8443/content/repositories/componentes-releases</url>
+                        </repository>
+                        <repository>
+                                <id>componentes-snapshots</id>
+                                <name>componentes-snapshots</name>
+                                <url>https://repoversiones.osde.ar:8443/content/repositories/componentes-snapshots</url>
+                                </repository>
+                                <repository>
+                                <id>servicios-releases</id>
+                                <name>servicios-releases</name>
+                                <url>https://repoversiones.osde.ar:8443/content/repositories/servicios-releases</url>
+                        </repository>
+                        <repository>
+                                <id>servicios-snapshots</id>
+                                <name>servicios-snapshots</name>
+                                <url>https://repoversiones.osde.ar:8443/content/repositories/servicios-snapshots</url>
+                                </repository>
+                                <repository>
+                                <id>aplicaciones-releases</id>
+                                <name>aplicaciones-releases</name>
+                                <url>https://repoversiones.osde.ar:8443/content/repositories/aplicaciones-releases</url>
+                        </repository>
+                        <repository>
+                                <id>aplicaciones-snapshots</id>
+                                <name>aplicaciones-snapshots</name>
+                                <url>https://repoversiones.osde.ar:8443/content/repositories/aplicaciones-snapshots</url>
+                                </repository>                                                          
+                        </repositories>
+
+                </profile>             
+                       
+        </profiles>
+       
+  <activeProfiles>
+    <activeProfile>OSDE-repos</activeProfile>
+  </activeProfiles>
+  
+</settings>
